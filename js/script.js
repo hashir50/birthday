@@ -91,81 +91,57 @@ bgMusic.addEventListener('timeupdate', () => {
     }
 });
 
-// Initial Setup: Hide custom cursor on touch devices
-const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+// Universal Glowing Custom Cursor & Pixie Dust Trail
+const cursor = document.createElement('div');
+cursor.classList.add('custom-cursor');
+document.body.appendChild(cursor);
 
-// Cursor Effect
-if (!isTouchDevice) {
-    const cursor = document.createElement('div');
-    cursor.classList.add('custom-cursor');
-    document.body.appendChild(cursor);
+function handlePointerMove(clientX, clientY) {
+    cursor.style.left = clientX + 'px';
+    cursor.style.top = clientY + 'px';
 
-    document.addEventListener('mousemove', (e) => {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
-
-        // Pixie Dust Trail
-        if (Math.random() > 0.3) {
-            const trail = document.createElement('div');
-            trail.classList.add('cursor-trail');
-            trail.style.left = e.clientX + 'px';
-            trail.style.top = e.clientY + 'px';
-            
-            const colors = ['#FFD166', '#FF6FAE', '#ffffff', '#a2d2ff'];
-            trail.style.background = colors[Math.floor(Math.random() * colors.length)];
-            trail.style.boxShadow = `0 0 10px ${trail.style.background}`;
-            
-            document.body.appendChild(trail);
-            
-            const fallX = (Math.random() - 0.5) * 50;
-            const fallY = Math.random() * 50 + 20;
-            
-            gsap.to(trail, {
-                x: fallX,
-                y: fallY,
-                opacity: 0,
-                scale: 0.1,
-                duration: 1 + Math.random(),
-                onComplete: () => trail.remove()
-            });
-        }
-    });
-} else {
-    // Touch particle effect
-    document.addEventListener('touchmove', (e) => {
-        const touch = e.touches[0];
-        if (Math.random() > 0.3) {
-            const trail = document.createElement('div');
-            trail.classList.add('cursor-trail');
-            trail.style.left = touch.clientX + 'px';
-            trail.style.top = touch.clientY + 'px';
-            
-            const colors = ['#FFD166', '#FF6FAE', '#ffffff', '#a2d2ff'];
-            trail.style.background = colors[Math.floor(Math.random() * colors.length)];
-            trail.style.boxShadow = `0 0 10px ${trail.style.background}`;
-            
-            document.body.appendChild(trail);
-            
-            const fallX = (Math.random() - 0.5) * 50;
-            const fallY = Math.random() * 50 + 20;
-            
-            gsap.to(trail, {
-                x: fallX,
-                y: fallY,
-                opacity: 0,
-                scale: 0.1,
-                duration: 1 + Math.random(),
-                onComplete: () => trail.remove()
-            });
-        }
-    });
+    if (Math.random() > 0.3) {
+        const trail = document.createElement('div');
+        trail.classList.add('cursor-trail');
+        trail.style.left = clientX + 'px';
+        trail.style.top = clientY + 'px';
+        
+        const colors = ['#FFD166', '#FF6FAE', '#ffffff', '#a2d2ff'];
+        trail.style.background = colors[Math.floor(Math.random() * colors.length)];
+        trail.style.boxShadow = `0 0 10px ${trail.style.background}`;
+        
+        document.body.appendChild(trail);
+        
+        const fallX = (Math.random() - 0.5) * 50;
+        const fallY = Math.random() * 50 + 20;
+        
+        gsap.to(trail, {
+            x: fallX,
+            y: fallY,
+            opacity: 0,
+            scale: 0.1,
+            duration: 1 + Math.random(),
+            onComplete: () => trail.remove()
+        });
+    }
 }
+
+document.addEventListener('mousemove', (e) => handlePointerMove(e.clientX, e.clientY));
+document.addEventListener('touchmove', (e) => {
+    if (e.touches && e.touches[0]) {
+        handlePointerMove(e.touches[0].clientX, e.touches[0].clientY);
+    }
+});
 
 // Starry Sky Canvas
 const canvas = document.getElementById('starry-sky');
 const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
 
 const stars = [];
 for (let i = 0; i < 200; i++) {
@@ -321,6 +297,7 @@ function startWarpSpeed() {
             onComplete: () => {
                 document.body.style.overflowY = 'auto';
                 initMainAnimations();
+                setTimeout(() => { ScrollTrigger.refresh(); }, 100);
             }
         });
     }, 2000); // 2 seconds of warp
@@ -388,47 +365,64 @@ function initMainAnimations() {
         modal.style.display = "none";
     });
 
+    // Envelope & Typed.js Love Letter
+    const envelope = document.getElementById('envelope-wrapper');
+    const letterModal = document.getElementById('letter-modal');
+    const closeLetterBtn = document.querySelector('.close-letter-modal');
+
+    function openLoveLetter() {
+        if (envelope && !envelope.classList.contains('open')) {
+            envelope.classList.add('open');
+            if (navigator.vibrate) navigator.vibrate(50);
+        }
+
+        setTimeout(() => {
+            if (letterModal) {
+                letterModal.style.display = 'flex';
+                if (!window.typedStarted) {
+                    window.typedStarted = true;
+                    new Typed('#typed-text', {
+                        strings: [
+                            `Dear Laiba,<br><br>
+                            From the first day we met during our Aptech diploma, I never imagined my classmate and teammate would become the love of my life.<br><br>
+                            Every assignment, every project, every Techwiz memory brought us closer.<br><br>
+                            Your beautiful eyes, your smile, your innocence, and your kind heart make me fall in love with you every single day.<br><br>
+                            You are not only an amazing software engineer...<br><br>
+                            You are the most beautiful chapter of my life.<br><br>
+                            I can't wait to marry you.<br>
+                            Travel the world with you.<br>
+                            Build our dream home.<br>
+                            Grow old beside you.<br><br>
+                            Happy Birthday, my love.<br><br>
+                            Forever Yours,<br>
+                            Hashir ❤️`
+                        ],
+                        typeSpeed: 30,
+                        showCursor: false
+                    });
+                }
+            }
+        }, 500);
+    }
+
+    if (envelope) {
+        envelope.addEventListener('click', openLoveLetter);
+    }
+
+    if (closeLetterBtn) {
+        closeLetterBtn.addEventListener('click', () => {
+            if (letterModal) letterModal.style.display = 'none';
+        });
+    }
+
     window.addEventListener('click', (e) => {
         if (e.target == modal) {
             modal.style.display = "none";
         }
+        if (e.target == letterModal) {
+            letterModal.style.display = "none";
+        }
     });
-
-    // Envelope & Typed.js Love Letter
-    const envelope = document.getElementById('envelope-wrapper');
-    if (envelope) {
-        envelope.addEventListener('click', () => {
-            if(!envelope.classList.contains('open')) {
-                envelope.classList.add('open');
-                if(navigator.vibrate) navigator.vibrate(50);
-                
-                setTimeout(() => {
-                    if(!window.typedStarted) {
-                        window.typedStarted = true;
-                        new Typed('#typed-text', {
-                            strings: [
-                                `Dear Laiba,<br><br>
-                                From the first day we met during our Aptech diploma, I never imagined my classmate and teammate would become the love of my life.<br><br>
-                                Every assignment, every project, every Techwiz memory brought us closer.<br><br>
-                                Your beautiful eyes, your smile, your innocence, and your kind heart make me fall in love with you every single day.<br><br>
-                                You are not only an amazing software engineer...<br><br>
-                                You are the most beautiful chapter of my life.<br><br>
-                                I can't wait to marry you.<br>
-                                Travel the world with you.<br>
-                                Build our dream home.<br>
-                                Grow old beside you.<br><br>
-                                Happy Birthday, my love.<br><br>
-                                Forever Yours,<br>
-                                Hashir ❤️`
-                            ],
-                            typeSpeed: 30,
-                            showCursor: false
-                        });
-                    }
-                }, 1000);
-            }
-        });
-    }
 
     // Text Messages Stagger
     gsap.to('.message', {
@@ -439,7 +433,7 @@ function initMainAnimations() {
         ease: "back.out(1.5)",
         scrollTrigger: {
             trigger: "#text-memories",
-            start: "top 70%"
+            start: "top 85%"
         }
     });
 
@@ -452,7 +446,7 @@ function initMainAnimations() {
         ease: "back.out(1.7)",
         scrollTrigger: {
             trigger: "#reasons",
-            start: "top 70%"
+            start: "top 85%"
         }
     });
 
@@ -461,30 +455,57 @@ function initMainAnimations() {
         opacity: 1,
         scale: 1,
         duration: 0.8,
-        stagger: 0.3,
-        ease: "elastic.out(1, 0.5)",
+        stagger: 0.2,
+        ease: "back.out(1.5)",
         scrollTrigger: {
             trigger: "#dream-together",
-            start: "top 70%"
+            start: "top 95%"
         }
     });
 
-    // Final Scene Animation
+    // Final Scene Sequential Storytelling
+    let finalScenePlayed = false;
+    function playFinalSceneSequence() {
+        if (finalScenePlayed) return;
+        finalScenePlayed = true;
+
+        const tl = gsap.timeline();
+        tl.to('.final-pause', { opacity: 1, duration: 1.2 })
+          .to('.final-pause', { opacity: 0, duration: 0.8, delay: 1.2 })
+          .to('.final-promise p', { opacity: 1, scale: 1, duration: 0.8, stagger: 0.7 })
+          .to('.final-greeting', { opacity: 1, y: -20, duration: 1.2, delay: 0.4, onComplete: triggerEndingAnimation });
+    }
+
     const finalTl = gsap.timeline({
         scrollTrigger: {
             trigger: "#final-scene",
-            start: "top 50%"
+            start: "top 80%",
+            onEnter: () => playFinalSceneSequence()
         }
     });
 
-    finalTl.to('.final-pause', { opacity: 1, duration: 2 })
-           .to('.final-pause', { opacity: 0, duration: 1, delay: 1 })
-           .to('.final-promise p', { opacity: 1, scale: 1, duration: 1.5, stagger: 1.5 })
-           .to('.final-greeting', { opacity: 1, y: -20, duration: 2, delay: 1, onComplete: triggerEndingAnimation });
+    // Fallback Observer
+    if ('IntersectionObserver' in window) {
+        const visibilityObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (entry.target.classList.contains('dream-icon')) {
+                        gsap.to(entry.target, { opacity: 1, scale: 1, duration: 0.5 });
+                    }
+                    if (entry.target.id === 'final-scene') {
+                        playFinalSceneSequence();
+                    }
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.dream-icon, #final-scene').forEach(el => visibilityObserver.observe(el));
+    }
     // 3D Tilt Effect for Cards
     const tiltElements = document.querySelectorAll('.reason-card, .glass-card, .dream-icon, .scratch-container');
     tiltElements.forEach(el => {
         el.addEventListener('mousemove', (e) => {
+            if (window.matchMedia('(pointer: coarse)').matches) return;
             const rect = el.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
@@ -543,7 +564,9 @@ function initMainAnimations() {
             const rect = scratchCanvas.getBoundingClientRect();
             const clientX = e.touches ? e.touches[0].clientX : e.clientX;
             const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-            scratch(clientX - rect.left, clientY - rect.top);
+            const scaleX = scratchCanvas.width / rect.width;
+            const scaleY = scratchCanvas.height / rect.height;
+            scratch((clientX - rect.left) * scaleX, (clientY - rect.top) * scaleY);
         };
 
         scratchCanvas.addEventListener('mousedown', startDrawing);
@@ -783,9 +806,13 @@ document.addEventListener('dblclick', (e) => {
         </div>
     `;
     
-    // Position at mouse (centered)
-    p.style.left = (e.clientX - 100) + 'px';
-    p.style.top = (e.clientY - 120) + 'px';
+    // Position at mouse (centered & bounded inside viewport)
+    const pWidth = window.innerWidth <= 480 ? 150 : 200;
+    const pHeight = window.innerWidth <= 480 ? 180 : 240;
+    const left = Math.max(10, Math.min(window.innerWidth - pWidth - 10, e.clientX - pWidth / 2));
+    const top = Math.max(10, Math.min(window.innerHeight - pHeight - 10, e.clientY - pHeight / 2));
+    p.style.left = left + 'px';
+    p.style.top = top + 'px';
     
     // Random rotation between -20 and 20 degrees
     const rot = (Math.random() * 40) - 20;

@@ -35,7 +35,7 @@
     </section>
 
     <!-- Hacker Terminal Overlay -->
-    <div id="hacker-terminal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); width: 90vw; max-width:600px; background: rgba(0,0,0,0.85); border: 1px solid #27c93f; border-radius: 10px; padding: 20px; z-index: 99999; font-family: 'Courier New', Courier, monospace; color: #27c93f; font-size: 1.1rem; box-shadow: 0 0 30px rgba(39, 201, 63, 0.4); backdrop-filter: blur(5px);">
+    <div id="hacker-terminal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); width: 90vw; max-width:600px; max-height: 80vh; overflow-y: auto; background: rgba(0,0,0,0.85); border: 1px solid #27c93f; border-radius: 10px; padding: 20px; z-index: 99999; font-family: 'Courier New', Courier, monospace; color: #27c93f; font-size: 1rem; box-shadow: 0 0 30px rgba(39, 201, 63, 0.4); backdrop-filter: blur(5px);">
         <div style="border-bottom: 1px solid rgba(39,201,63,0.5); padding-bottom: 10px; margin-bottom: 15px; display:flex; gap: 8px;">
             <div style="width:12px; height:12px; border-radius:50%; background:#ff5f56; box-shadow: 0 0 5px #ff5f56;"></div>
             <div style="width:12px; height:12px; border-radius:50%; background:#ffbd2e; box-shadow: 0 0 5px #ffbd2e;"></div>
@@ -93,7 +93,7 @@
                 <div class="envelope">
                     <div class="envelope-flap" id="envelope-flap"></div>
                     <div class="envelope-paper" id="envelope-paper">
-                        <div id="typed-text"></div>
+                        <p style="font-family: var(--font-title); font-size: 1.3rem; color: #ff4c98; text-align: center; margin-top: 25px;">❤️ For Laiba ❤️</p>
                     </div>
                     <div class="envelope-front"></div>
                     <div class="envelope-wax">❤️</div>
@@ -188,6 +188,15 @@
     <div id="image-modal" class="modal">
         <span class="close-modal">&times;</span>
         <img class="modal-content" id="modal-img">
+    </div>
+
+    <!-- Modal for Love Letter -->
+    <div id="letter-modal" class="letter-modal-backdrop">
+        <div class="letter-modal-card">
+            <span class="close-letter-modal">&times;</span>
+            <h2 style="font-family: var(--font-title); font-size: 2.2rem; color: var(--accent-pink); text-align: center; margin-bottom: 20px;">A Letter for Laiba ❤️</h2>
+            <div id="typed-text"></div>
+        </div>
     </div>
 
     <!-- Audio -->
