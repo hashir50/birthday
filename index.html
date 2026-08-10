@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Laiba ❤️</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Dancing+Script:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Cursor -->
+    <div id="cursor-particles"></div>
+    
+    <!-- Background Elements -->
+    <canvas id="starry-sky"></canvas>
+    <div id="floating-hearts-container"></div>
+    <div class="main-bg"></div>
+
+    <!-- Opening Screen -->
+    <section id="opening-screen">
+        <h1 class="title">Happy Birthday ❤️<br><span>Laiba</span></h1>
+        <p class="subtitle">"I made something special just for you..."</p>
+        <div class="gift-box" id="gift-box">
+            <div class="gift-lid"></div>
+            <div class="gift-body">
+                <div class="ribbon-vertical"></div>
+                <div class="ribbon-horizontal"></div>
+            </div>
+            <p class="click-text">🎁 Click to Open</p>
+        </div>
+    </section>
+
+    <!-- Hacker Terminal Overlay -->
+    <div id="hacker-terminal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); width: 90vw; max-width:600px; background: rgba(0,0,0,0.85); border: 1px solid #27c93f; border-radius: 10px; padding: 20px; z-index: 99999; font-family: 'Courier New', Courier, monospace; color: #27c93f; font-size: 1.1rem; box-shadow: 0 0 30px rgba(39, 201, 63, 0.4); backdrop-filter: blur(5px);">
+        <div style="border-bottom: 1px solid rgba(39,201,63,0.5); padding-bottom: 10px; margin-bottom: 15px; display:flex; gap: 8px;">
+            <div style="width:12px; height:12px; border-radius:50%; background:#ff5f56; box-shadow: 0 0 5px #ff5f56;"></div>
+            <div style="width:12px; height:12px; border-radius:50%; background:#ffbd2e; box-shadow: 0 0 5px #ffbd2e;"></div>
+            <div style="width:12px; height:12px; border-radius:50%; background:#27c93f; box-shadow: 0 0 5px #27c93f;"></div>
+        </div>
+        <div id="terminal-text" style="line-height: 1.6;"></div>
+    </div>
+
+    <!-- Main Content (Hidden Initially) -->
+    <main id="main-content" style="display: none;">
+        <!-- Lyrics Overlay -->
+        <div id="lyrics-container">
+            <div id="lyrics-text"></div>
+        </div>
+
+        <!-- Main Scene -->
+        <section id="main-scene" class="scene">
+            <div class="text-container">
+                <h1 class="fade-text title">Happy Birthday<br>Laiba ❤️</h1>
+                <p class="fade-text">Every heartbeat...</p>
+                <p class="fade-text">Every smile...</p>
+                <p class="fade-text">Every dream...</p>
+                <p class="fade-text">Leads me back to you.</p>
+            </div>
+        </section>
+
+        <!-- 3D Photo Carousel -->
+        <section id="photo-carousel" class="scene">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="assets/1.jpg" alt="Memory 1" onerror="this.src='https://images.unsplash.com/photo-1518199268839-497c413b56f8?auto=format&fit=crop&w=500&q=80'"></div>
+                    <div class="swiper-slide"><img src="assets/2.jpg" alt="Memory 2" onerror="this.src='https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?auto=format&fit=crop&w=500&q=80'"></div>
+                    <div class="swiper-slide"><img src="assets/3.jpg" alt="Memory 3" onerror="this.src='https://images.unsplash.com/photo-1494774157365-9e04c6720e47?auto=format&fit=crop&w=500&q=80'"></div>
+                    <div class="swiper-slide"><img src="assets/4.jpg" alt="Memory 4" onerror="this.src='https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=500&q=80'"></div>
+                    <div class="swiper-slide"><img src="assets/5.jpg" alt="Memory 5" onerror="this.src='https://images.unsplash.com/photo-1505909182942-e2f09aee3e89?auto=format&fit=crop&w=500&q=80'"></div>
+                    <div class="swiper-slide"><img src="assets/6.jpg" alt="Memory 6" onerror="this.src='https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=500&q=80'"></div>
+                    <div class="swiper-slide"><img src="assets/7.jpg" alt="Memory 7" onerror="this.src='https://images.unsplash.com/photo-1518199268839-497c413b56f8?auto=format&fit=crop&w=500&q=80'"></div>
+                    <div class="swiper-slide"><img src="assets/8.jpg" alt="Memory 8" onerror="this.src='https://images.unsplash.com/photo-1518199268839-497c413b56f8?auto=format&fit=crop&w=500&q=80'"></div>
+                    <div class="swiper-slide"><img src="assets/9.jpg" alt="Memory 9" onerror="this.src='https://images.unsplash.com/photo-1518199268839-497c413b56f8?auto=format&fit=crop&w=500&q=80'"></div>
+                    <div class="swiper-slide"><img src="assets/10.jpg" alt="Memory 10" onerror="this.src='https://images.unsplash.com/photo-1518199268839-497c413b56f8?auto=format&fit=crop&w=500&q=80'"></div>
+                    <div class="swiper-slide"><img src="assets/11.jpg" alt="Memory 11" onerror="this.src='https://images.unsplash.com/photo-1518199268839-497c413b56f8?auto=format&fit=crop&w=500&q=80'"></div>
+                    <div class="swiper-slide"><img src="assets/12.jpg" alt="Memory 12" onerror="this.src='https://images.unsplash.com/photo-1518199268839-497c413b56f8?auto=format&fit=crop&w=500&q=80'"></div>
+                    <div class="swiper-slide"><img src="assets/13.jpg" alt="Memory 13" onerror="this.src='https://images.unsplash.com/photo-1518199268839-497c413b56f8?auto=format&fit=crop&w=500&q=80'"></div>
+                    <div class="swiper-slide"><img src="assets/14.jpg" alt="Memory 14" onerror="this.src='https://images.unsplash.com/photo-1518199268839-497c413b56f8?auto=format&fit=crop&w=500&q=80'"></div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </section>
+
+        <!-- Love Letter (3D Envelope) -->
+        <section id="love-letter" class="scene">
+            <h2 class="section-title">A Letter for You...</h2>
+            <p class="subtitle" style="margin-bottom: 80px;">Tap the envelope to open</p>
+            <div class="envelope-wrapper" id="envelope-wrapper">
+                <div class="envelope">
+                    <div class="envelope-flap" id="envelope-flap"></div>
+                    <div class="envelope-paper" id="envelope-paper">
+                        <div id="typed-text"></div>
+                    </div>
+                    <div class="envelope-front"></div>
+                    <div class="envelope-wax">❤️</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Text Message Memories -->
+        <section id="text-memories" class="scene" style="min-height: 80vh;">
+            <div class="phone-container">
+                <div class="message incoming">Hey Laiba! It's Hashir from class.</div>
+                <div class="message outgoing">Hey Hashir! What's up?</div>
+                <div class="message incoming">Do you want to team up for the e-project ☕️?</div>
+                <div class="message outgoing">Yeah sure! Let's do it 😊</div>
+                <div class="message incoming" style="margin-top: 30px; background: none; border: none; font-style: italic; color: var(--accent-gold);">Little did I know, that was the best decision of my life...</div>
+            </div>
+        </section>
+
+        <!-- Reasons I Love You -->
+        <section id="reasons" class="scene">
+            <h2 class="section-title">Reasons I Love You</h2>
+            <div class="cards-container">
+                <div class="reason-card"><span>👀</span> Your Eyes</div>
+                <div class="reason-card"><span>😊</span> Your Smile</div>
+                <div class="reason-card"><span>🤍</span> Your Innocence</div>
+                <div class="reason-card"><span>💻</span> Your Brilliant Mind</div>
+                <div class="reason-card"><span>❤️</span> Your Kind Heart</div>
+                <div class="reason-card"><span>🌍</span> Our Future Together</div>
+            </div>
+        </section>
+
+        <!-- Dream Together Section -->
+        <section id="dream-together" class="scene">
+            <h2 class="section-title">Our Dreams</h2>
+            <div class="dreams-container">
+                <div class="dream-icon">💍<br><span>Marriage</span></div>
+                <div class="dream-icon">✈️<br><span>Travel</span></div>
+                <div class="dream-icon">🏡<br><span>Dream Home</span></div>
+                <div class="dream-icon">🌍<br><span>Adventures</span></div>
+                <div class="dream-icon">👴👵<br><span>Growing Old</span></div>
+                <!-- SVG lines will be drawn by JS -->
+                <svg id="dream-lines"></svg>
+            </div>
+        </section>
+
+        <!-- Heartbeat Sync -->
+        <section id="heartbeat-sync" class="scene">
+            <h2 class="section-title" style="color: #FF6FAE;">Sync Our Hearts</h2>
+            <p class="subtitle">Press and hold the heart until it's full...</p>
+            <div class="heart-button" id="heart-btn">
+                <div class="heart-icon">❤️</div>
+                <svg class="progress-ring" width="150" height="150">
+                    <circle class="progress-ring__circle" stroke="#FF6FAE" stroke-width="6" fill="transparent" r="70" cx="75" cy="75"/>
+                </svg>
+            </div>
+            <div id="heartbeat-message" class="hidden-message">
+                <h1>My heart beats only for you.</h1>
+            </div>
+        </section>
+
+        <!-- Scratch to Reveal -->
+        <section id="scratch-reveal" class="scene">
+            <h2 class="section-title">A Hidden Secret...</h2>
+            <p class="subtitle">Scratch away the stardust</p>
+            <div class="scratch-container">
+                <div class="scratch-content">
+                    <h3>My Promise</h3>
+                    <p>I will always be your safe place, your biggest fan, and your greatest love.</p>
+                </div>
+                <canvas id="scratch-canvas"></canvas>
+            </div>
+        </section>
+
+        <!-- Final Scene -->
+        <section id="final-scene" class="scene">
+            <div class="final-text-container">
+                <h2 class="final-pause">One Last Thing...</h2>
+                <div class="final-promise">
+                    <p>I promise to keep choosing you...</p>
+                    <p>Every single day...</p>
+                    <p>For the rest of my life.</p>
+                </div>
+                <div class="final-greeting">
+                    <h1>❤️ Happy Birthday Laiba ❤️</h1>
+                    <p class="signature">Forever Yours,<br>Hashir</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal for fullscreen images -->
+    <div id="image-modal" class="modal">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="modal-img">
+    </div>
+
+    <!-- Audio -->
+    <audio id="bg-music" loop>
+        <source src="assets/music.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

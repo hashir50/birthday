@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lyric Syncer</title>
+    <style>
+        body { font-family: sans-serif; background: #0B1026; color: white; text-align: center; padding: 50px; }
+        #instruction { font-size: 24px; margin-bottom: 20px; }
+        #current-line { font-size: 32px; color: #FFD166; margin: 30px 0; min-height: 40px; }
+        #next-line { font-size: 20px; color: gray; margin-bottom: 30px; }
+        textarea { width: 100%; height: 300px; background: #141B3A; color: #FF6FAE; padding: 20px; font-family: monospace; border: none; border-radius: 10px;}
+        button { padding: 15px 30px; font-size: 18px; cursor: pointer; background: #FF6FAE; border: none; border-radius: 10px; color: white; box-shadow: 0 4px 15px rgba(255, 111, 174, 0.4);}
+        button:hover { background: #ff4c98; }
+    </style>
+</head>
+<body>
+    <div id="instruction">Press the "Start Music" button. Then press the <b>SPACEBAR</b> the exact moment you hear each line sung.</div>
+    <button id="start-btn">Start Music & Sync</button>
+    <div id="current-line"></div>
+    <div id="next-line">Next: It started with a classroom, a dream we couldn't see,</div>
+    
+    <!-- This plays the actual music file from your assets folder -->
+    <audio id="audio" src="assets/music.mp3"></audio>
+    
+    <div id="result" style="display:none;">
+        <h2>🎉 All Done!</h2>
+        <p>Copy all the code in the box below, and replace the existing `const lyricsData = [...]` section in your <b>js/script.js</b> file with it.</p>
+        <textarea id="output" onclick="this.select()"></textarea>
+    </div>
+
+    <script>
+        const lyricsTextArray = [
+            "It started with a classroom, a dream we couldn't see,",
+            "Two students writing futures, just you and me.",
+            "Through every project, every deadline, every test,",
+            "Six semesters later, you became my very best.",
+            "You turned every challenge into something bright,",
+            "Standing by my side through every long night.",
+            "From lines of code to dreams untold,",
+            "You quietly became my heart to hold.",
+            "Then came Techwiz, where we stood as one,",
+            "Chasing dreams until the day was done.",
+            "I didn't know back then what destiny knew...",
+            "My forever would begin with you.",
+            "Happy Birthday, Laiba, my love, my light,",
+            "You're the reason every day feels right.",
+            "In your eyes I found my peaceful place,",
+            "In your smile I found amazing grace.",
+            "From classmates then to soulmates now,",
+            "I'll love you forever—I promise somehow.",
+            "Every dream I dream is brighter because of you,",
+            "Happy Birthday... my forever is you.",
+            "You're brilliant with every line of code you write,",
+            "Yet your gentle heart shines even more bright.",
+            "Your innocence still steals my breath away,",
+            "And makes me fall in love every single day.",
+            "You believed in me when I needed you most,",
+            "You're the one I'm forever proud to toast.",
+            "No matter where this journey goes,",
+            "You're the answer my heart always chose.",
+            "One day we'll build a little home,",
+            "Fill it with laughter wherever we roam.",
+            "We'll travel the world, hand in hand,",
+            "Making memories across every land.",
+            "And when our hair has turned to gray,",
+            "I'll still look at you the very same way.",
+            "Because forever isn't just a word to me...",
+            "It's every moment you'll share with me.",
+            "Happy Birthday, Laiba, my beautiful heart,",
+            "You were my home before the very start.",
+            "Through every sunrise, every star above,",
+            "I'll choose you again with all my love.",
+            "Here's to forever, to dreams coming true,",
+            "To every tomorrow I'll spend with you.",
+            "From Aptech days to our wedding day,",
+            "I'll love you more in every way.",
+            "Happy Birthday, my love.",
+            "I'm grateful that my classmate became my best friend...",
+            "My fiancée...",
+            "And soon, my wife. ❤️"
+        ];
+
+        let currentIndex = 0;
+        const newLyricsData = [];
+        const audio = document.getElementById('audio');
+        const startBtn = document.getElementById('start-btn');
+        const currentLineEl = document.getElementById('current-line');
+        const nextLineEl = document.getElementById('next-line');
+        const resultDiv = document.getElementById('result');
+        const outputEl = document.getElementById('output');
+        let isSyncing = false;
+
+        startBtn.addEventListener('click', () => {
+            audio.currentTime = 0;
+            audio.play();
+            startBtn.style.display = 'none';
+            isSyncing = true;
+            document.getElementById('instruction').innerHTML = "Listening... Press <b>SPACEBAR</b> exactly when the next line is sung.";
+            nextLineEl.innerText = "Next: " + lyricsTextArray[0];
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if(e.code === 'Space' && isSyncing) {
+                e.preventDefault(); // Prevent page scroll
+                
+                // Record the time
+                const time = parseFloat(audio.currentTime.toFixed(2));
+                
+                // Add to array
+                newLyricsData.push(`    { time: ${time}, text: "${lyricsTextArray[currentIndex].replace(/"/g, '\\"')}" }`);
+                
+                // Show what was recorded
+                currentLineEl.innerText = lyricsTextArray[currentIndex];
+                
+                currentIndex++;
+                
+                if (currentIndex < lyricsTextArray.length) {
+                    nextLineEl.innerText = "Next: " + lyricsTextArray[currentIndex];
+                } else {
+                    // Done
+                    isSyncing = false;
+                    audio.pause();
+                    document.getElementById('instruction').style.display = 'none';
+                    nextLineEl.innerText = "Finished!";
+                    currentLineEl.innerText = "";
+                    resultDiv.style.display = 'block';
+                    
+                    const code = `const lyricsData = [\n${newLyricsData.join(',\n')}\n];`;
+                    outputEl.value = code;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
