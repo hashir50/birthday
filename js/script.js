@@ -65,7 +65,7 @@ let currentLyricIndex = -1;
 
 bgMusic.addEventListener('timeupdate', () => {
     const currentTime = bgMusic.currentTime;
-    
+
     let newIndex = -1;
     for (let i = 0; i < lyricsData.length; i++) {
         if (currentTime >= lyricsData[i].time) {
@@ -80,7 +80,7 @@ bgMusic.addEventListener('timeupdate', () => {
         if (newIndex !== -1) {
             lyricsText.style.opacity = 0;
             lyricsText.style.transform = "translateY(5px)";
-            
+
             setTimeout(() => {
                 lyricsText.innerText = lyricsData[newIndex].text;
                 lyricsContainer.classList.add('visible');
@@ -105,16 +105,16 @@ function handlePointerMove(clientX, clientY) {
         trail.classList.add('cursor-trail');
         trail.style.left = clientX + 'px';
         trail.style.top = clientY + 'px';
-        
+
         const colors = ['#FFD166', '#FF6FAE', '#ffffff', '#a2d2ff'];
         trail.style.background = colors[Math.floor(Math.random() * colors.length)];
         trail.style.boxShadow = `0 0 10px ${trail.style.background}`;
-        
+
         document.body.appendChild(trail);
-        
+
         const fallX = (Math.random() - 0.5) * 50;
         const fallY = Math.random() * 50 + 20;
-        
+
         gsap.to(trail, {
             x: fallX,
             y: fallY,
@@ -154,45 +154,45 @@ for (let i = 0; i < 200; i++) {
     });
 }
 
-    window.isWarpSpeed = false;
-    function animateStars() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        const centerX = canvas.width / 2;
-        const centerY = canvas.height / 2;
-        
-        stars.forEach(star => {
-            if(window.isWarpSpeed) {
-                const dx = star.x - centerX;
-                const dy = star.y - centerY;
-                star.x += dx * 0.05;
-                star.y += dy * 0.05;
-                
-                ctx.strokeStyle = `rgba(255, 255, 255, ${star.alpha})`;
-                ctx.lineWidth = star.size;
-                ctx.beginPath();
-                ctx.moveTo(star.x - dx*0.1, star.y - dy*0.1);
-                ctx.lineTo(star.x, star.y);
-                ctx.stroke();
+window.isWarpSpeed = false;
+function animateStars() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
 
-                if (star.x < 0 || star.x > canvas.width || star.y < 0 || star.y > canvas.height) {
-                    star.x = centerX + (Math.random() - 0.5) * 20;
-                    star.y = centerY + (Math.random() - 0.5) * 20;
-                }
-            } else {
-                ctx.fillStyle = `rgba(255, 255, 255, ${star.alpha})`;
-                ctx.beginPath();
-                ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
-                ctx.fill();
+    stars.forEach(star => {
+        if (window.isWarpSpeed) {
+            const dx = star.x - centerX;
+            const dy = star.y - centerY;
+            star.x += dx * 0.05;
+            star.y += dy * 0.05;
 
-                star.y -= star.speed;
-                if (star.y < 0) {
-                    star.y = canvas.height;
-                    star.x = Math.random() * canvas.width;
-                }
+            ctx.strokeStyle = `rgba(255, 255, 255, ${star.alpha})`;
+            ctx.lineWidth = star.size;
+            ctx.beginPath();
+            ctx.moveTo(star.x - dx * 0.1, star.y - dy * 0.1);
+            ctx.lineTo(star.x, star.y);
+            ctx.stroke();
+
+            if (star.x < 0 || star.x > canvas.width || star.y < 0 || star.y > canvas.height) {
+                star.x = centerX + (Math.random() - 0.5) * 20;
+                star.y = centerY + (Math.random() - 0.5) * 20;
             }
-        });
-        requestAnimationFrame(animateStars);
-    }
+        } else {
+            ctx.fillStyle = `rgba(255, 255, 255, ${star.alpha})`;
+            ctx.beginPath();
+            ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+            ctx.fill();
+
+            star.y -= star.speed;
+            if (star.y < 0) {
+                star.y = canvas.height;
+                star.x = Math.random() * canvas.width;
+            }
+        }
+    });
+    requestAnimationFrame(animateStars);
+}
 animateStars();
 
 window.addEventListener('resize', () => {
@@ -210,7 +210,7 @@ function createHeart() {
     heart.style.animationDuration = Math.random() * 5 + 5 + 's';
     heart.style.fontSize = Math.random() * 20 + 10 + 'px';
     container.appendChild(heart);
-    
+
     setTimeout(() => {
         heart.remove();
     }, 10000);
@@ -224,7 +224,7 @@ giftBox.addEventListener('click', openSurprise);
 function openSurprise() {
     // Glitch effect on screen
     document.body.style.animation = "glitch 0.3s 2";
-    
+
     // Play a computer glitch sound
     try {
         const AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -236,7 +236,7 @@ function openSurprise() {
         osc.connect(audioCtx.destination);
         osc.start();
         osc.stop(audioCtx.currentTime + 0.3);
-    } catch(e) {}
+    } catch (e) { }
 
     gsap.to('#opening-screen', {
         opacity: 0,
@@ -244,11 +244,11 @@ function openSurprise() {
         onComplete: () => {
             document.getElementById('opening-screen').style.display = 'none';
             document.body.style.animation = "";
-            
+
             // Show terminal
             const terminal = document.getElementById('hacker-terminal');
             terminal.style.display = 'block';
-            
+
             new Typed('#terminal-text', {
                 strings: [
                     `C:\\Users\\Hashir\\Heart> execute forever_yours.exe<br>
@@ -290,18 +290,27 @@ function startWarpSpeed() {
         window.isWarpSpeed = false;
         const mainContent = document.getElementById('main-content');
         mainContent.style.display = 'block';
-        
+
+        initMainAnimations();
+        ScrollTrigger.refresh();
+
         gsap.to(mainContent, {
             opacity: 1,
             duration: 2,
             onComplete: () => {
                 document.body.style.overflowY = 'auto';
-                initMainAnimations();
                 setTimeout(() => { ScrollTrigger.refresh(); }, 100);
+                setTimeout(() => { ScrollTrigger.refresh(); }, 500);
             }
         });
     }, 2000); // 2 seconds of warp
 }
+
+window.addEventListener('load', () => {
+    if (typeof ScrollTrigger !== 'undefined') {
+        ScrollTrigger.refresh();
+    }
+});
 
 // Main Animations
 function initMainAnimations() {
@@ -353,9 +362,9 @@ function initMainAnimations() {
     const modal = document.getElementById('image-modal');
     const modalImg = document.getElementById('modal-img');
     const closeBtn = document.querySelector('.close-modal');
-    
+
     document.querySelectorAll('.swiper-slide img').forEach(img => {
-        img.addEventListener('click', function() {
+        img.addEventListener('click', function () {
             modal.style.display = "block";
             modalImg.src = this.src;
         });
@@ -429,11 +438,12 @@ function initMainAnimations() {
         opacity: 1,
         y: 0,
         duration: 0.6,
-        stagger: 1,
+        stagger: 0.8,
         ease: "back.out(1.5)",
         scrollTrigger: {
             trigger: "#text-memories",
-            start: "top 85%"
+            start: "top 95%",
+            invalidateOnRefresh: true
         }
     });
 
@@ -442,11 +452,12 @@ function initMainAnimations() {
         opacity: 1,
         y: 0,
         duration: 0.8,
-        stagger: 0.2,
+        stagger: 0.15,
         ease: "back.out(1.7)",
         scrollTrigger: {
             trigger: "#reasons",
-            start: "top 85%"
+            start: "top 95%",
+            invalidateOnRefresh: true
         }
     });
 
@@ -459,7 +470,8 @@ function initMainAnimations() {
         ease: "back.out(1.5)",
         scrollTrigger: {
             trigger: "#dream-together",
-            start: "top 95%"
+            start: "top 95%",
+            invalidateOnRefresh: true
         }
     });
 
@@ -471,24 +483,30 @@ function initMainAnimations() {
 
         const tl = gsap.timeline();
         tl.to('.final-pause', { opacity: 1, duration: 1.2 })
-          .to('.final-pause', { opacity: 0, duration: 0.8, delay: 1.2 })
-          .to('.final-promise p', { opacity: 1, scale: 1, duration: 0.8, stagger: 0.7 })
-          .to('.final-greeting', { opacity: 1, y: -20, duration: 1.2, delay: 0.4, onComplete: triggerEndingAnimation });
+            .to('.final-pause', { opacity: 0, duration: 0.8, delay: 1.2 })
+            .to('.final-promise p', { opacity: 1, scale: 1, duration: 0.8, stagger: 0.7 })
+            .to('.final-greeting', { opacity: 1, y: -20, duration: 1.2, delay: 0.4, onComplete: triggerEndingAnimation });
     }
 
     const finalTl = gsap.timeline({
         scrollTrigger: {
             trigger: "#final-scene",
-            start: "top 80%",
+            start: "top 90%",
             onEnter: () => playFinalSceneSequence()
         }
     });
 
-    // Fallback Observer
+    // Fallback Observer for Mobile Robustness
     if ('IntersectionObserver' in window) {
         const visibilityObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
+                    if (entry.target.classList.contains('reason-card')) {
+                        gsap.to(entry.target, { opacity: 1, y: 0, duration: 0.6, ease: "back.out(1.7)" });
+                    }
+                    if (entry.target.classList.contains('message')) {
+                        gsap.to(entry.target, { opacity: 1, y: 0, duration: 0.5 });
+                    }
                     if (entry.target.classList.contains('dream-icon')) {
                         gsap.to(entry.target, { opacity: 1, scale: 1, duration: 0.5 });
                     }
@@ -497,9 +515,9 @@ function initMainAnimations() {
                     }
                 }
             });
-        }, { threshold: 0.1 });
+        }, { threshold: 0.05 });
 
-        document.querySelectorAll('.dream-icon, #final-scene').forEach(el => visibilityObserver.observe(el));
+        document.querySelectorAll('.reason-card, .message, .dream-icon, #final-scene').forEach(el => visibilityObserver.observe(el));
     }
     // 3D Tilt Effect for Cards
     const tiltElements = document.querySelectorAll('.reason-card, .glass-card, .dream-icon, .scratch-container');
@@ -513,12 +531,12 @@ function initMainAnimations() {
             const centerY = rect.height / 2;
             const rotateX = ((y - centerY) / centerY) * -15;
             const rotateY = ((x - centerX) / centerX) * 15;
-            
+
             el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
             el.style.transition = 'none';
             el.style.zIndex = '10';
         });
-        
+
         el.addEventListener('mouseleave', () => {
             el.style.transform = '';
             el.style.transition = 'all 0.5s ease';
@@ -536,13 +554,13 @@ function initMainAnimations() {
         // Fill with stardust
         sCtx.fillStyle = '#141B3A';
         sCtx.fillRect(0, 0, 320, 320);
-        for(let i=0; i<150; i++) {
+        for (let i = 0; i < 150; i++) {
             sCtx.fillStyle = Math.random() > 0.5 ? '#FFD166' : '#FF6FAE';
             sCtx.beginPath();
-            sCtx.arc(Math.random()*320, Math.random()*320, Math.random()*2.5, 0, Math.PI*2);
+            sCtx.arc(Math.random() * 320, Math.random() * 320, Math.random() * 2.5, 0, Math.PI * 2);
             sCtx.fill();
         }
-        
+
         sCtx.font = "bold 22px Montserrat";
         sCtx.fillStyle = "#ffffff";
         sCtx.textAlign = "center";
@@ -573,8 +591,8 @@ function initMainAnimations() {
         scratchCanvas.addEventListener('mousemove', draw);
         scratchCanvas.addEventListener('mouseup', stopDrawing);
         scratchCanvas.addEventListener('mouseleave', stopDrawing);
-        scratchCanvas.addEventListener('touchstart', startDrawing, {passive: false});
-        scratchCanvas.addEventListener('touchmove', draw, {passive: false});
+        scratchCanvas.addEventListener('touchstart', startDrawing, { passive: false });
+        scratchCanvas.addEventListener('touchmove', draw, { passive: false });
         scratchCanvas.addEventListener('touchend', stopDrawing);
     }
 
@@ -584,41 +602,41 @@ function initMainAnimations() {
     const circle = document.querySelector('.progress-ring__circle');
     const hiddenMsg = document.getElementById('heartbeat-message');
     const heartIcon = document.querySelector('.heart-icon');
-    
+
     if (heartBtn && circle) {
         const circumference = 2 * Math.PI * 70; // r=70
         let holdTimer;
         let progress = 0;
         let isHolding = false;
-        
+
         const updateProgress = () => {
             if (!isHolding) return;
-            progress += 1.5; 
-            
+            progress += 1.5;
+
             // Speed up heartbeat animation
             const speed = Math.max(0.3, 1.5 - (progress / 100));
             heartIcon.style.animationDuration = speed + 's';
-            
+
             const offset = circumference - (progress / 100) * circumference;
             circle.style.strokeDashoffset = offset;
-            
+
             if (progress >= 100) {
                 // Success!
                 clearInterval(holdTimer);
                 isHolding = false;
-                
+
                 // Vibrate if mobile
                 if (navigator.vibrate) navigator.vibrate([100, 50, 100, 50, 300]);
-                
+
                 // Explode effect
                 heartIcon.style.transform = 'scale(5)';
                 heartIcon.style.opacity = '0';
                 circle.style.opacity = '0';
-                
+
                 setTimeout(() => {
                     hiddenMsg.classList.add('show');
                     heartSection.classList.add('active');
-                    
+
                     confetti({
                         particleCount: 150,
                         spread: 120,
@@ -630,7 +648,7 @@ function initMainAnimations() {
         };
 
         const startHold = (e) => {
-            if(e.type === 'touchstart') e.preventDefault();
+            if (e.type === 'touchstart') e.preventDefault();
             if (progress >= 100) return;
             isHolding = true;
             clearInterval(holdTimer);
@@ -648,21 +666,21 @@ function initMainAnimations() {
                     return;
                 }
                 progress -= 2;
-                if(progress < 0) progress = 0;
+                if (progress < 0) progress = 0;
                 circle.style.strokeDashoffset = circumference - (progress / 100) * circumference;
                 heartIcon.style.animationDuration = '1.5s';
             }, 20);
         };
 
         heartBtn.addEventListener('mousedown', startHold);
-        heartBtn.addEventListener('touchstart', startHold, {passive: false});
+        heartBtn.addEventListener('touchstart', startHold, { passive: false });
         window.addEventListener('mouseup', stopHold);
         window.addEventListener('touchend', stopHold);
     }
 
     // Click anywhere for fireworks in Final Scene
     const finalScene = document.getElementById('final-scene');
-    if(finalScene) {
+    if (finalScene) {
         finalScene.addEventListener('click', (e) => {
             // Ignore if clicking the danger button
             if (e.target.id === 'gravity-btn') return;
@@ -679,12 +697,12 @@ function initMainAnimations() {
 
     // Gravity Break Logic
     const gravBtn = document.getElementById('gravity-btn');
-    if(gravBtn) {
+    if (gravBtn) {
         gravBtn.addEventListener('click', (e) => {
             e.stopPropagation(); // Prevent fireworks
             const bgMusic = document.getElementById('bg-music');
-            if(bgMusic) bgMusic.pause();
-            
+            if (bgMusic) bgMusic.pause();
+
             // Record scratch sound
             try {
                 const AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -696,7 +714,7 @@ function initMainAnimations() {
                 osc.connect(audioCtx.destination);
                 osc.start();
                 osc.stop(audioCtx.currentTime + 0.3);
-            } catch(e) {}
+            } catch (e) { }
 
             const allElements = document.querySelectorAll('.scene > *:not(#gravity-btn):not(canvas)');
             allElements.forEach(el => {
@@ -706,7 +724,7 @@ function initMainAnimations() {
                 el.style.transform = `translateY(${drop}px) rotate(${rot}deg)`;
                 el.style.opacity = '0';
             });
-            
+
             setTimeout(() => {
                 const fixMsg = document.createElement('h1');
                 fixMsg.innerHTML = "Even if my whole world falls apart...<br><span style='color:#FF6FAE'>I will always put it back together for you.</span>";
@@ -720,13 +738,13 @@ function initMainAnimations() {
                 fixMsg.style.opacity = '0';
                 fixMsg.style.zIndex = '10000';
                 document.body.appendChild(fixMsg);
-                
-                gsap.to(fixMsg, {opacity: 1, duration: 2});
-                
+
+                gsap.to(fixMsg, { opacity: 1, duration: 2 });
+
                 setTimeout(() => {
-                    gsap.to(fixMsg, {opacity: 0, duration: 1, onComplete: () => fixMsg.remove()});
+                    gsap.to(fixMsg, { opacity: 0, duration: 1, onComplete: () => fixMsg.remove() });
                     // Rebuild
-                    if(bgMusic) bgMusic.play();
+                    if (bgMusic) bgMusic.play();
                     allElements.forEach(el => {
                         el.style.transition = 'all 1.5s ease-out';
                         el.style.transform = '';
@@ -746,19 +764,19 @@ function triggerEndingAnimation() {
     const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
 
     function randomInRange(min, max) {
-      return Math.random() * (max - min) + min;
+        return Math.random() * (max - min) + min;
     }
 
-    const interval = setInterval(function() {
-      const timeLeft = animationEnd - Date.now();
+    const interval = setInterval(function () {
+        const timeLeft = animationEnd - Date.now();
 
-      if (timeLeft <= 0) {
-        return clearInterval(interval);
-      }
+        if (timeLeft <= 0) {
+            return clearInterval(interval);
+        }
 
-      const particleCount = 50 * (timeLeft / duration);
-      confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
-      confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+        const particleCount = 50 * (timeLeft / duration);
+        confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+        confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
     }, 250);
 
     // Increase star speed and heart generation
@@ -795,17 +813,17 @@ document.addEventListener('dblclick', (e) => {
     // Create Polaroid
     const p = document.createElement('div');
     p.classList.add('polaroid');
-    
+
     const randomImg = polaroidImages[Math.floor(Math.random() * polaroidImages.length)];
     const randomCap = polaroidCaptions[Math.floor(Math.random() * polaroidCaptions.length)];
-    
+
     p.innerHTML = `
         <div class="polaroid-inner">
             <img src="assets/${randomImg}" onerror="this.src='https://images.unsplash.com/photo-1518199268839-497c413b56f8?auto=format&fit=crop&w=300&q=80'">
             <p>${randomCap}</p>
         </div>
     `;
-    
+
     // Position at mouse (centered & bounded inside viewport)
     const pWidth = window.innerWidth <= 480 ? 150 : 200;
     const pHeight = window.innerWidth <= 480 ? 180 : 240;
@@ -813,13 +831,13 @@ document.addEventListener('dblclick', (e) => {
     const top = Math.max(10, Math.min(window.innerHeight - pHeight - 10, e.clientY - pHeight / 2));
     p.style.left = left + 'px';
     p.style.top = top + 'px';
-    
+
     // Random rotation between -20 and 20 degrees
     const rot = (Math.random() * 40) - 20;
     p.style.transform = `rotate(${rot}deg) scale(0)`;
-    
+
     document.body.appendChild(p);
-    
+
     // Play a shutter sound (using Web Audio API for a synthesized click)
     try {
         const AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -835,13 +853,13 @@ document.addEventListener('dblclick', (e) => {
         gainNode.connect(audioCtx.destination);
         oscillator.start();
         oscillator.stop(audioCtx.currentTime + 0.1);
-    } catch(e) {}
-    
+    } catch (e) { }
+
     // Animate in
     setTimeout(() => {
         p.style.transform = `rotate(${rot}deg) scale(1)`;
     }, 50);
-    
+
     // Make Draggable
     makeDraggable(p);
 });
@@ -853,14 +871,14 @@ function makeDraggable(el) {
 
     function dragMouseDown(e) {
         e = e || window.event;
-        if(e.type !== 'touchstart') e.preventDefault();
+        if (e.type !== 'touchstart') e.preventDefault();
         pos3 = e.clientX || (e.touches && e.touches[0].clientX);
         pos4 = e.clientY || (e.touches && e.touches[0].clientY);
         document.onmouseup = closeDragElement;
         document.ontouchend = closeDragElement;
         document.onmousemove = elementDrag;
         document.ontouchmove = elementDrag;
-        
+
         // Bring to front
         const allPolaroids = document.querySelectorAll('.polaroid');
         allPolaroids.forEach(p => p.style.zIndex = 1000);
@@ -869,7 +887,7 @@ function makeDraggable(el) {
 
     function elementDrag(e) {
         e = e || window.event;
-        if(e.type !== 'touchmove') e.preventDefault();
+        if (e.type !== 'touchmove') e.preventDefault();
         const clientX = e.clientX || (e.touches && e.touches[0].clientX);
         const clientY = e.clientY || (e.touches && e.touches[0].clientY);
         pos1 = pos3 - clientX;

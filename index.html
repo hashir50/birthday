@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Birthday Laiba ❤️</title>
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Dancing+Script:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Dancing+Script:wght@700&family=Montserrat:wght@300;400;600&display=swap"
+        rel="stylesheet">
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <!-- Cursor -->
     <div id="cursor-particles"></div>
-    
+
     <!-- Background Elements -->
     <canvas id="starry-sky"></canvas>
     <div id="floating-hearts-container"></div>
@@ -35,11 +39,16 @@
     </section>
 
     <!-- Hacker Terminal Overlay -->
-    <div id="hacker-terminal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); width: 90vw; max-width:600px; max-height: 80vh; overflow-y: auto; background: rgba(0,0,0,0.85); border: 1px solid #27c93f; border-radius: 10px; padding: 20px; z-index: 99999; font-family: 'Courier New', Courier, monospace; color: #27c93f; font-size: 1rem; box-shadow: 0 0 30px rgba(39, 201, 63, 0.4); backdrop-filter: blur(5px);">
-        <div style="border-bottom: 1px solid rgba(39,201,63,0.5); padding-bottom: 10px; margin-bottom: 15px; display:flex; gap: 8px;">
-            <div style="width:12px; height:12px; border-radius:50%; background:#ff5f56; box-shadow: 0 0 5px #ff5f56;"></div>
-            <div style="width:12px; height:12px; border-radius:50%; background:#ffbd2e; box-shadow: 0 0 5px #ffbd2e;"></div>
-            <div style="width:12px; height:12px; border-radius:50%; background:#27c93f; box-shadow: 0 0 5px #27c93f;"></div>
+    <div id="hacker-terminal"
+        style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); width: 90vw; max-width:600px; max-height: 80vh; overflow-y: auto; background: rgba(0,0,0,0.85); border: 1px solid #27c93f; border-radius: 10px; padding: 20px; z-index: 99999; font-family: 'Courier New', Courier, monospace; color: #27c93f; font-size: 1rem; box-shadow: 0 0 30px rgba(39, 201, 63, 0.4); backdrop-filter: blur(5px);">
+        <div
+            style="border-bottom: 1px solid rgba(39,201,63,0.5); padding-bottom: 10px; margin-bottom: 15px; display:flex; gap: 8px;">
+            <div style="width:12px; height:12px; border-radius:50%; background:#ff5f56; box-shadow: 0 0 5px #ff5f56;">
+            </div>
+            <div style="width:12px; height:12px; border-radius:50%; background:#ffbd2e; box-shadow: 0 0 5px #ffbd2e;">
+            </div>
+            <div style="width:12px; height:12px; border-radius:50%; background:#27c93f; box-shadow: 0 0 5px #27c93f;">
+            </div>
         </div>
         <div id="terminal-text" style="line-height: 1.6;"></div>
     </div>
@@ -66,20 +75,48 @@
         <section id="photo-carousel" class="scene">
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide"><img src="assets/1.jpg" alt="Memory 1" onerror="this.src='https://images.unsplash.com/photo-1518199268839-497c413b56f8?auto=format&fit=crop&w=500&q=80'"></div>
-                    <div class="swiper-slide"><img src="assets/2.jpg" alt="Memory 2" onerror="this.src='https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?auto=format&fit=crop&w=500&q=80'"></div>
-                    <div class="swiper-slide"><img src="assets/3.jpg" alt="Memory 3" onerror="this.src='https://images.unsplash.com/photo-1494774157365-9e04c6720e47?auto=format&fit=crop&w=500&q=80'"></div>
-                    <div class="swiper-slide"><img src="assets/4.jpg" alt="Memory 4" onerror="this.src='https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=500&q=80'"></div>
-                    <div class="swiper-slide"><img src="assets/5.jpg" alt="Memory 5" onerror="this.src='https://images.unsplash.com/photo-1505909182942-e2f09aee3e89?auto=format&fit=crop&w=500&q=80'"></div>
-                    <div class="swiper-slide"><img src="assets/6.jpg" alt="Memory 6" onerror="this.src='https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=500&q=80'"></div>
-                    <div class="swiper-slide"><img src="assets/7.jpg" alt="Memory 7" onerror="this.src='https://images.unsplash.com/photo-1518199268839-497c413b56f8?auto=format&fit=crop&w=500&q=80'"></div>
-                    <div class="swiper-slide"><img src="assets/8.jpg" alt="Memory 8" onerror="this.src='https://images.unsplash.com/photo-1518199268839-497c413b56f8?auto=format&fit=crop&w=500&q=80'"></div>
-                    <div class="swiper-slide"><img src="assets/9.jpg" alt="Memory 9" onerror="this.src='https://images.unsplash.com/photo-1518199268839-497c413b56f8?auto=format&fit=crop&w=500&q=80'"></div>
-                    <div class="swiper-slide"><img src="assets/10.jpg" alt="Memory 10" onerror="this.src='https://images.unsplash.com/photo-1518199268839-497c413b56f8?auto=format&fit=crop&w=500&q=80'"></div>
-                    <div class="swiper-slide"><img src="assets/11.jpg" alt="Memory 11" onerror="this.src='https://images.unsplash.com/photo-1518199268839-497c413b56f8?auto=format&fit=crop&w=500&q=80'"></div>
-                    <div class="swiper-slide"><img src="assets/12.jpg" alt="Memory 12" onerror="this.src='https://images.unsplash.com/photo-1518199268839-497c413b56f8?auto=format&fit=crop&w=500&q=80'"></div>
-                    <div class="swiper-slide"><img src="assets/13.jpg" alt="Memory 13" onerror="this.src='https://images.unsplash.com/photo-1518199268839-497c413b56f8?auto=format&fit=crop&w=500&q=80'"></div>
-                    <div class="swiper-slide"><img src="assets/14.jpg" alt="Memory 14" onerror="this.src='https://images.unsplash.com/photo-1518199268839-497c413b56f8?auto=format&fit=crop&w=500&q=80'"></div>
+                    <div class="swiper-slide"><img src="assets/1.jpg" alt="Memory 1"
+                            onerror="this.src='https://images.unsplash.com/photo-1518199268839-497c413b56f8?auto=format&fit=crop&w=500&q=80'">
+                    </div>
+                    <div class="swiper-slide"><img src="assets/2.jpg" alt="Memory 2"
+                            onerror="this.src='https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?auto=format&fit=crop&w=500&q=80'">
+                    </div>
+                    <div class="swiper-slide"><img src="assets/3.jpg" alt="Memory 3"
+                            onerror="this.src='https://images.unsplash.com/photo-1494774157365-9e04c6720e47?auto=format&fit=crop&w=500&q=80'">
+                    </div>
+                    <div class="swiper-slide"><img src="assets/4.jpg" alt="Memory 4"
+                            onerror="this.src='https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=500&q=80'">
+                    </div>
+                    <div class="swiper-slide"><img src="assets/5.jpg" alt="Memory 5"
+                            onerror="this.src='https://images.unsplash.com/photo-1505909182942-e2f09aee3e89?auto=format&fit=crop&w=500&q=80'">
+                    </div>
+                    <div class="swiper-slide"><img src="assets/6.jpg" alt="Memory 6"
+                            onerror="this.src='https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=500&q=80'">
+                    </div>
+                    <div class="swiper-slide"><img src="assets/7.jpg" alt="Memory 7"
+                            onerror="this.src='https://images.unsplash.com/photo-1518199268839-497c413b56f8?auto=format&fit=crop&w=500&q=80'">
+                    </div>
+                    <div class="swiper-slide"><img src="assets/8.jpg" alt="Memory 8"
+                            onerror="this.src='https://images.unsplash.com/photo-1518199268839-497c413b56f8?auto=format&fit=crop&w=500&q=80'">
+                    </div>
+                    <div class="swiper-slide"><img src="assets/9.jpg" alt="Memory 9"
+                            onerror="this.src='https://images.unsplash.com/photo-1518199268839-497c413b56f8?auto=format&fit=crop&w=500&q=80'">
+                    </div>
+                    <div class="swiper-slide"><img src="assets/10.jpg" alt="Memory 10"
+                            onerror="this.src='https://images.unsplash.com/photo-1518199268839-497c413b56f8?auto=format&fit=crop&w=500&q=80'">
+                    </div>
+                    <div class="swiper-slide"><img src="assets/11.jpg" alt="Memory 11"
+                            onerror="this.src='https://images.unsplash.com/photo-1518199268839-497c413b56f8?auto=format&fit=crop&w=500&q=80'">
+                    </div>
+                    <div class="swiper-slide"><img src="assets/12.jpg" alt="Memory 12"
+                            onerror="this.src='https://images.unsplash.com/photo-1518199268839-497c413b56f8?auto=format&fit=crop&w=500&q=80'">
+                    </div>
+                    <div class="swiper-slide"><img src="assets/13.jpg" alt="Memory 13"
+                            onerror="this.src='https://images.unsplash.com/photo-1518199268839-497c413b56f8?auto=format&fit=crop&w=500&q=80'">
+                    </div>
+                    <div class="swiper-slide"><img src="assets/14.jpg" alt="Memory 14"
+                            onerror="this.src='https://images.unsplash.com/photo-1518199268839-497c413b56f8?auto=format&fit=crop&w=500&q=80'">
+                    </div>
                 </div>
                 <div class="swiper-pagination"></div>
             </div>
@@ -93,7 +130,9 @@
                 <div class="envelope">
                     <div class="envelope-flap" id="envelope-flap"></div>
                     <div class="envelope-paper" id="envelope-paper">
-                        <p style="font-family: var(--font-title); font-size: 1.3rem; color: #ff4c98; text-align: center; margin-top: 25px;">❤️ For Laiba ❤️</p>
+                        <p
+                            style="font-family: var(--font-title); font-size: 1.3rem; color: #ff4c98; text-align: center; margin-top: 25px;">
+                            ❤️ For Laiba ❤️</p>
                     </div>
                     <div class="envelope-front"></div>
                     <div class="envelope-wax">❤️</div>
@@ -108,7 +147,9 @@
                 <div class="message outgoing">Hey Hashir! What's up?</div>
                 <div class="message incoming">Do you want to team up for the e-project ☕️?</div>
                 <div class="message outgoing">Yeah sure! Let's do it 😊</div>
-                <div class="message incoming" style="margin-top: 30px; background: none; border: none; font-style: italic; color: var(--accent-gold);">Little did I know, that was the best decision of my life...</div>
+                <div class="message incoming"
+                    style="margin-top: 30px; background: none; border: none; font-style: italic; color: var(--accent-gold);">
+                    Little did I know, that was the best decision of my life...</div>
             </div>
         </section>
 
@@ -146,7 +187,8 @@
             <div class="heart-button" id="heart-btn">
                 <div class="heart-icon">❤️</div>
                 <svg class="progress-ring" width="150" height="150">
-                    <circle class="progress-ring__circle" stroke="#FF6FAE" stroke-width="6" fill="transparent" r="70" cx="75" cy="75"/>
+                    <circle class="progress-ring__circle" stroke="#FF6FAE" stroke-width="6" fill="transparent" r="70"
+                        cx="75" cy="75" />
                 </svg>
             </div>
             <div id="heartbeat-message" class="hidden-message">
@@ -194,7 +236,9 @@
     <div id="letter-modal" class="letter-modal-backdrop">
         <div class="letter-modal-card">
             <span class="close-letter-modal">&times;</span>
-            <h2 style="font-family: var(--font-title); font-size: 2.2rem; color: var(--accent-pink); text-align: center; margin-bottom: 20px;">A Letter for Laiba ❤️</h2>
+            <h2
+                style="font-family: var(--font-title); font-size: 2.2rem; color: var(--accent-pink); text-align: center; margin-bottom: 20px;">
+                A Letter for Laiba ❤️</h2>
             <div id="typed-text"></div>
         </div>
     </div>
@@ -212,4 +256,5 @@
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     <script src="js/script.js"></script>
 </body>
+
 </html>
